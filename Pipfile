@@ -11,3 +11,6 @@ djangorestframework = "*"
 
 [requires]
 python_version = "3.13"
+
+[scripts]
+start = "python manage.py runserver" # to run use - pipenv run start

@@ -6,24 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0001_initial'),
+        ("app", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='pub_date',
+            model_name="product",
+            name="pub_date",
             field=models.DateTimeField(default=None),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='product',
-            name='rate',
+            model_name="product",
+            name="rate",
             field=models.IntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='id',
+            model_name="product",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
     ]

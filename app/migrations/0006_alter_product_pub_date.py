@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0005_alter_product_pub_date'),
+        ("app", "0005_alter_product_pub_date"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='pub_date',
+            model_name="product",
+            name="pub_date",
             field=models.DateTimeField(default=django.utils.timezone.now),
         ),
     ]

@@ -1,0 +1,17 @@
+[tool.black]
+line-length = 88  # Максимальная длина строки (по умолчанию 88)
+target-version = ['py39']  # Версия Python, для которой форматируется код
+include = '\.pyi?$'  # Регулярное выражение для файлов, которые нужно форматировать
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''

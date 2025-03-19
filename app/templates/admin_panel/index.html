@@ -1,0 +1,9 @@
+<h1>Admin Panel - Список продуктов</h1>
+<ul>
+    {% for product in products %}
+        <li>
+            <a href="/admin_panel/product/{{ product.id }}/">{{ product.name }} - ${{ product.price }}</a>
+        </li>
+    {% endfor %}
+</ul>
+<p><a href="#">Добавить новый продукт</a></p>

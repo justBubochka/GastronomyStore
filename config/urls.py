@@ -17,11 +17,19 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from app import views
+from app.views.client import views
+from app.views.admin_panel import views_admin_panel
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
     # path('api-auth/', include('rest_framework.urls'))
-    path("", views.products_list, name="products_list"),
-    path("product/<int:product_id>", views.details, name="product_details"),
+    path("admin/", admin.site.urls),
+
+    # 📌 Клиентская часть
+    path('', views.products_list, name='client_products_list'),
+    path('product/<int:product_id>/', views.products_details, name='client_product_details'),
+
+    # 📌 Админская часть
+    
+    path('admin_panel/', views_admin_panel.products_list_admin, name='admin_products_list'),
+    path('admin_panel/product/<int:product_id>/', views_admin_panel.product_details_admin, name='admin_product_details'),
 ]

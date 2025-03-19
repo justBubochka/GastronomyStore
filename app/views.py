@@ -3,12 +3,12 @@ from django.http import HttpResponse
 from django.template import loader
 from app.models import Product
 
-# Create your views here.
 
 
 def products_list(request, category=None):
     # search for products in db
-    products = Product.objects.order_by("-rate")[:5]
+    # products = Product.objects.order_by("-rate")[:5]
+    products = Product.objects.all()
     # give our data to the template
     template = loader.get_template("app/index.html")
     context = {"products": products}

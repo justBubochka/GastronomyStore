@@ -11,6 +11,8 @@ class Product(models.Model):
     rate = models.IntegerField(default=0) 
     create_date = models.DateTimeField(null=True, blank=True, default=None)  # null=True
     # question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name

@@ -32,5 +32,5 @@ urlpatterns = [
     
     path('admin_panel/', views_admin_panel.products_list_admin, name='admin_products_list'),
     path('admin_panel/product/<int:product_id>/', views_admin_panel.product_details_admin, name='admin_product_details'),
-    path('admin_panel/product/edit/<int:pk>', views_admin_panel.ProductUpdateView.as_view(), name='admin_product_edit'),
+    path('admin_panel/product/edit/<int:pk>/', views_admin_panel.ProductUpdateView.as_view(), name='admin_product_edit'),
 ]

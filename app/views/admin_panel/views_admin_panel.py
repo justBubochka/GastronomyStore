@@ -36,7 +36,7 @@ class ProductUpdateView(View):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('admin_panel/product_details', pk=product.pk)
+            return redirect('admin_products_list')
         return render(request, 'admin_panel/product_edit.html', {'form': form, 'product': product})
 
     

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.template import loader
 from app.models import Product, Category
 from django.views import View
@@ -35,7 +35,11 @@ class ProductDetailsView(View):
     '''View for displaying the details of a product'''
 
     def get(self, request, pk):
-        product = get_object_or_404(Product, pk=pk)
+        try:    
+            product = get_object_or_404(Product, pk=pk)
+        except Http404:
+            return HttpResponse("Product not found")
+        
         template = loader.get_template("admin_panel/product_details.html")
         form = ProductForm(instance=product)
         context = {"product": product, 'form': form}
@@ -43,7 +47,11 @@ class ProductDetailsView(View):
         return HttpResponse(template.render(context, request))
     
     def post(self, request, pk):
-        product = get_object_or_404(Product, pk=pk)
+        try:    
+            product = get_object_or_404(Product, pk=pk)
+        except Http404:
+            return HttpResponse("Product not found")
+        
         if request.method == "POST":
             if request.POST.get('delete'):
                 product.delete()
@@ -57,6 +65,7 @@ class ProductDetailsView(View):
                     messages.success(request, "Product was changed successfully!")
                     return redirect('admin_products_list')
                 return render(request, 'admin_panel/product_details.html', context)
+        
             
 
 

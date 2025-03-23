@@ -1,4 +1,5 @@
-<h1>Admin Panel - List of products</h1>
+<h1>Admin Panel</h1>
+<h3>List of products</h3>
 
 <!-- List of products -->
 <ul>
@@ -18,7 +19,7 @@
 <!-- Notifications -->
 {% if messages %}
     {% for message in messages %}
-        <div id="success_message" class="alert alert-{{ message.tags }}">
+        <div id="success_message" class="alert alert-{{ message.tags }}" style="color: green;">
             {{ message }}
         </div>
     {% endfor %}

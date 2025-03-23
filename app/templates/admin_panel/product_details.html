@@ -35,7 +35,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="edit" value="{{product.id}}" type="submit">Update</button>
+        <button name="edit" value="{{product.id}}">Update</button>
         <button name="delete" value="{{product.id}}">Delete</button>
     </form>
 </div>

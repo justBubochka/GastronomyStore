@@ -24,4 +24,7 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     products = models.ManyToManyField(Product, related_name='categories')
 
+    def __str__(self):
+        return self.name
+
 

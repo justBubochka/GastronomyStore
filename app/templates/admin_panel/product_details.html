@@ -4,6 +4,48 @@
     <span>Price is product  {{product.price}} rub</span>
     <span>Category: {{product.category}}</span>
     <span>Description: {{product.description}}</span>
+    
 {% else %}
     <span>The product is not found</span>
 {% endif %}
+
+<!-- Button to show create product form -->
+<br>
+<button onclick="showEditForm()">Open edit or delete form</button>
+<!-- Button to delete product -->
+
+
+
+{% if form.errors %}
+    <span style="color: red;">{{ form.errors }}</span>
+{% endif %}
+
+
+<!-- Notifications -->
+{% if messages %}
+    {% for message in messages %}
+        <div id="success_message" class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!-- Form to create a product -->
+<div id="myForm" style="display: none;">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="edit" value="{{product.id}}" type="submit">Update</button>
+        <button name="delete" value="{{product.id}}">Delete</button>
+    </form>
+</div>
+
+<script>
+    function showEditForm() {
+        let success_message_block = document.getElementById('success_message')
+        if (success_message_block) {
+            success_message_block.style.display = 'none';
+        }
+        document.getElementById('myForm').style.display = 'block';
+    }
+</script>

@@ -1,4 +1,6 @@
-<h1>Admin Panel - Список продуктов</h1>
+<h1>Admin Panel - List of products</h1>
+
+<!-- List of products -->
 <ul>
     {% for product in products %}
         <li>
@@ -6,4 +8,39 @@
         </li>
     {% endfor %}
 </ul>
-<p><a href="#">Добавить</a></p>
+
+<!-- Button to show create product form -->
+<button onclick="showForm()">Add</button>
+{% if form.errors %}
+    <span style="color: red;">{{ form.errors }}</span>
+{% endif %}
+
+<!-- Notifications -->
+{% if messages %}
+    {% for message in messages %}
+        <div id="success_message" class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!-- Form to create a product -->
+<div id="myForm" style="display: none;">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            Save
+        </button>
+    </form>
+</div>
+
+<script>
+    function showForm() {
+        let success_message_block = document.getElementById('success_message')
+        if (success_message_block) {
+            success_message_block.style.display = 'none';
+        }
+        document.getElementById('myForm').style.display = 'block';
+    }
+</script>

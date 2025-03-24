@@ -20,7 +20,7 @@ class ProductListView(View):
     
     def post(self, request):
         if request.method == "POST":
-            form = ProductForm(request.POST)
+            form = ProductForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
                 messages.success(request, "Product added successfully!")
@@ -57,7 +57,7 @@ class ProductDetailsView(View):
                 product.delete()
                 return redirect('admin_products_list')
             elif request.POST.get('edit'):
-                form = ProductForm(request.POST, instance=product)
+                form = ProductForm(request.POST, request.FILES, instance=product)
                 context = {"product": product, 'form': form}
 
                 if form.is_valid():

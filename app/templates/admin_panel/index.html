@@ -1,41 +1,42 @@
-<h1>Admin Panel</h1>
-<h3>List of products</h3>
+<div style="margin-left: 50px; margin-top: 30px;">
+    <h1>Admin Panel</h1>
+    <h3>List of products</h3>
 
-<!-- List of products -->
-<ul>
-    {% for product in products %}
-        <li>
-            <a href="/admin_panel/product/{{ product.id }}/">{{ product.name }} - ${{ product.price }}</a>
-        </li>
-    {% endfor %}
-</ul>
+    <!-- List of products -->
+    <ul>
+        {% for product in products %}
+            <li>
+                <a href="/admin_panel/product/{{ product.id }}/">{{ product.name }} - ${{ product.price }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 
-<!-- Button to show create product form -->
-<button onclick="showForm()">Add</button>
-{% if form.errors %}
-    <span style="color: red;">{{ form.errors }}</span>
-{% endif %}
+    <!-- Button to show create product form -->
+    <button onclick="showForm()">Add</button>
+    {% if form.errors %}
+        <span style="color: red;">{{ form.errors }}</span>
+    {% endif %}
 
-<!-- Notifications -->
-{% if messages %}
-    {% for message in messages %}
-        <div id="success_message" class="alert alert-{{ message.tags }}" style="color: green;">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+    <!-- Notifications -->
+    {% if messages %}
+        {% for message in messages %}
+            <div id="success_message" class="alert alert-{{ message.tags }}" style="color: green;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
-<!-- Form to create a product -->
-<div id="myForm" style="display: none;">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">
-            Save
-        </button>
-    </form>
+    <!-- Form to create a product -->
+    <div id="myForm" style="display: none;">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">
+                Save
+            </button>
+        </form>
+    </div>
 </div>
-
 <script>
     function showForm() {
         let success_message_block = document.getElementById('success_message')

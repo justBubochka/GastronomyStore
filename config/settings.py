@@ -20,9 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # production static settings
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # Папка для собранных статических файлов
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # static - CSS, JS
 
-MEDIA_URL = '/media/'  # Это путь для медиафайлов
+MEDIA_URL = '/media/'  # media - images, videos, etc.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Static files (CSS, JavaScript, Images) in development

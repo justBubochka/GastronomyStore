@@ -11,9 +11,24 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# production static settings
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # Папка для собранных статических файлов
+
+MEDIA_URL = '/media/'  # Это путь для медиафайлов
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Static files (CSS, JavaScript, Images) in development
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles'),  # Папка для пользовательских статичных файлов (CSS, JS, изображения)
+]
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,11 +38,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-!@99ngqw99*m(u+5795%31ho%(pla545=#2sgiok(f+!91h1x("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition

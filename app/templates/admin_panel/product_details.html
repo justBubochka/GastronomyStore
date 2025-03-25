@@ -1,46 +1,49 @@
-<div style="margin-left: 50px; margin-top: 30px;">
-    {% if product %}
-        <h1>You're looking at details of our {{product.name}}</h1>
+<div style="margin-left: 50px; margin-top: 30px; display: flex;">
+    <div>
+        <h1>Admin Panel</h1>
+        <h3>Product details</h3>
+        {% if product %}
+            <h1>You're looking at details of our {{product.name}}</h1>
+            
+            
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 400px; height: 400px; margin: 30px; margin-left: 0;">
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+            
+            <div>
+                <p>Price is product  {{product.price}} rub</p>
+                <p>Category: {{product.category}}</p>
+                <p>Description: {{product.description}}</p>
+            </div> 
         
         
-        {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 400px; height: 400px; margin: 30px; margin-left: 0;">
         {% else %}
-            <p>No image available</p>
+            <span>The product is not found</span>
         {% endif %}
-        
-        <div>
-            <p>Price is product  {{product.price}} rub</p>
-            <p>Category: {{product.category}}</p>
-            <p>Description: {{product.description}}</p>
-        </div> 
-    
-    
-    {% else %}
-        <span>The product is not found</span>
-    {% endif %}
 
-    <!-- Button to show create product form -->
-    <br>
-    <button onclick="showEditForm()">Open edit or delete form</button>
-    <!-- Button to delete product -->
+        <!-- Button to show create product form -->
+        <br>
+        <button onclick="showEditForm()">Open edit or delete form</button>
+        <!-- Button to delete product -->
 
-    {% if form.errors %}
-        <span style="color: red;">{{ form.errors }}</span>
-    {% endif %}
+        {% if form.errors %}
+            <span style="color: red;">{{ form.errors }}</span>
+        {% endif %}
 
 
-    <!-- Notifications -->
-    {% if messages %}
-        {% for message in messages %}
-            <div id="success_message" class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-
+        <!-- Notifications -->
+        {% if messages %}
+            {% for message in messages %}
+                <div id="success_message" style="color: green;" class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
     <!-- Form to create a product -->
-    <div id="myForm" style="display: none;">
+    <div id="myForm" style="display: none; margin-left: 50px; margin-top: 21px;">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}

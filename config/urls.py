@@ -31,8 +31,7 @@ urlpatterns = [
     path('product/<int:product_id>/', views.products_details, name='client_product_details'),
 
     # 📌 Админская часть
-    path('admin_panel/', views_admin_panel.ProductListView.as_view(), name='admin_products_list'),
-    path('admin_panel/product/<int:pk>/', views_admin_panel.ProductDetailsView.as_view(), name='admin_product_details')
+    path('', include('app.urls.urls')),
 ]
 
 

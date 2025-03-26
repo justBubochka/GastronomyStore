@@ -1,9 +1,9 @@
-{% if products %}
-    <ul>
-    {% for p in products %}
-        <li><a href="/product/{{ p.id }}">{{ p.name }}</a></li>
-    {% endfor %}
-    </ul>
+{% if user.is_authenticated %}
+    <span>Your username: {{ user.username }}</span>
+    <a href="{% url 'logout' %}">Logout</a>
 {% else %}
-    <p>No products available.</p>
+    <div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'registration' %}">Registration</a>
+    </div>
 {% endif %}

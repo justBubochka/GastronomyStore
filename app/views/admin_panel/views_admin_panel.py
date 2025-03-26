@@ -1,3 +1,5 @@
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, Http404
 from django.template import loader
@@ -7,13 +9,22 @@ from app.forms import ProductForm
 from django.contrib import messages
 
 
+@method_decorator(staff_member_required, name="dispatch")
+class AdminHomeView(View):
+    '''Home page view'''
 
+    def get(self, request):
+
+        return render(request, "admin_panel/index.html")
+    
+
+@method_decorator(staff_member_required, name="dispatch")
 class ProductListView(View):
     '''View for displaying a list of products'''
 
     def get(self, request):
         products = Product.objects.all()
-        template = loader.get_template("admin_panel/index.html")
+        template = loader.get_template("admin_panel/products.html")
         form = ProductForm()
         context = {"products": products, 'form': form }
         return HttpResponse(template.render(context, request))
@@ -28,9 +39,9 @@ class ProductListView(View):
             
         # if not valid then return the form with errors
         products = Product.objects.all()
-        return render(request, 'admin_panel/index.html', {'products': products, 'form': form})
+        return render(request, 'admin_panel/products.html', {'products': products, 'form': form})
 
-
+@method_decorator(staff_member_required, name="dispatch")
 class ProductDetailsView(View):
     '''View for displaying the details of a product'''
 

@@ -26,12 +26,18 @@ urlpatterns = [
     # path('api-auth/', include('rest_framework.urls'))
     path("admin/", admin.site.urls),
 
+    path('login/', views.login_view, name='login'),
+    path('registration/', views.registration_view, name='registration'),
+    path('logout/', views.logout_view, name='logout'),
+
     # 📌 Клиентская часть
-    path('', views.products_list, name='client_products_list'),
+    path('', views.client_home, name='client_home'),
+    path('products', views.products_list, name='client_products_list'),
     path('product/<int:product_id>/', views.products_details, name='client_product_details'),
 
     # 📌 Админская часть
-    path('admin_panel/', views_admin_panel.ProductListView.as_view(), name='admin_products_list'),
+    path('admin_panel/', views_admin_panel.AdminHomeView.as_view(), name='admin_home'),
+    path('admin_panel/products', views_admin_panel.ProductListView.as_view(), name='admin_products_list'),
     path('admin_panel/product/<int:pk>/', views_admin_panel.ProductDetailsView.as_view(), name='admin_product_details')
 ]
 
